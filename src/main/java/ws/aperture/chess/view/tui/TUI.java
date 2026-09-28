@@ -72,6 +72,12 @@ public class TUI {
         startScreen();
         do {
             drawBoard();
+            // End of input (Ctrl-D, or a piped script running out) saves and quits like "exit"
+            // instead of throwing.
+            if (!scanner.hasNext()) {
+                game.logGame();
+                break;
+            }
             message = scanner.next();
             if (mode == 's') {
                 promptIndex = 0;
